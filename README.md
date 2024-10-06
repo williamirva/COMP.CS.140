@@ -1,5 +1,5 @@
-How to run application: /n
-docker-compose up –-build /n
-wait for containers to start /n
-curl localhost:8199 #This prints system information of services /n
-docker-compose down
+How to run application:  
+docker-compose up –-build  
+wait for containers to start  
+curl localhost:8199 #This prints system information of services  
+docker-compose down  
