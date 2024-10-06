@@ -1,0 +1,14 @@
+docker container ls output:
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS                    NAMES
+7e15a0c4a0fe   compcs140-spring-boot-app   "java -jar app.jar"      11 minutes ago   Up 11 minutes   0.0.0.0:8199->8199/tcp   java-app
+2e6b9c521ca5   compcs140-node-app          "docker-entrypoint.s…"   11 minutes ago   Up 11 minutes   0.0.0.0:8080->8080/tcp   node-app
+
+docker network ls output:
+NETWORK ID     NAME                    DRIVER    SCOPE
+bde696c158d7   apuope-re_default       bridge    local
+f5740ec62d6a   backend_default         bridge    local
+10b70ecbb66b   bridge                  bridge    local
+a24e898702ed   compcs140_app-network   bridge    local
+28d7a82b5f3a   host                    host      local
+5056d821e921   medium-meno_backend     bridge    local
+c53636217007   none                    null      local

@@ -1,0 +1,10 @@
+In this exercise I used ChatGPT 4o model to generate base for my docker files. Also, it helped to give me linux commands to fetch the system data from docker containers.
+However, as always when using LLM, I first had to do research what I specifically want to do and then ask specific questions from LLM to get help with the task.
+Also, Java dependencies caused some problems when running through docker, so I asked LLm for help debugging the issue and suggesting solutions to fix them.
+This saved some time in the development process. I used LLm in a way I usually do in work and studying related stuff.
+It is good tool to help getting forward and doing manual stuff, but bad creating large entities with long instructions.
+For example LLM used some stupid patterns when asked to create Controller for making get-request to the Node-server.
+I didn't want to start implementing SpringBoot even though LLm suggested to, as this was such a simple task. This is why I decided to write actual code myself.
+Regarding docker compose. The Node Dockerfile was pretty much the same I would make from scratch myself. To Java version I used
+slim version of jdk although due to that I had to add update and install for bash commands as lite version didn't seem to support them.
+Maybe LLMs version would have been simpler after all but at least I get hands-on experience on using the slim JDK and maybe the start-up time is now a bit faster.

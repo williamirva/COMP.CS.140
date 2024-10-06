@@ -11,13 +11,13 @@ import java.net.URISyntaxException;
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
         try {
-        startHttpServer();
-         synchronized (SystemInfoController.class) {
-                SystemInfoController.class.wait();  // Wait indefinitely to keep the container alive
+            startHttpServer();
+            synchronized (SystemInfoController.class) {
+                SystemInfoController.class.wait();
             }
         } catch (Exception e) {
             e.printStackTrace();
-    }
+        }
     }
 
     public static void startHttpServer() throws IOException {
@@ -38,7 +38,7 @@ public class Application {
                         e.printStackTrace();
                     }
                 } else {
-                    exchange.sendResponseHeaders(405, -1); // 405 Method Not Allowed
+                    exchange.sendResponseHeaders(405, -1);
                 }
             }
         });
