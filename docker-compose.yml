@@ -1,0 +1,25 @@
+version: '3'
+services:
+  node-app:
+    build:
+      context: ./compcs140 nodejs compose
+    container_name: node-app
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  spring-boot-app:
+    build:
+      context: ./compcs140-java-compose
+    container_name: java-app
+    ports:
+      - "8199:8199"
+    depends_on:
+      - node-app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
