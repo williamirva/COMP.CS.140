@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    let isAuthenticated = false;
+
+    function showLoginPage() {
+        document.getElementById('app').innerHTML = `
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div id="error"></div>
+            `;
+
+        document.getElementById('login-form').onsubmit = async (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/authenticate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            if (response.ok) {
+                isAuthenticated = true;
+                showMainPage();
+            } else {
+                document.getElementById('error').innerText = "Invalid credentials. Try again.";
+            }
+        };
+    }
+
+    function showMainPage() {
+        document.getElementById('app').innerHTML = `
+                <button onclick="requestService()">REQUEST</button>
+                <button onclick="stopService()">STOP</button>
+                <textarea id="response-area" readonly></textarea>
+            `;
+    }
+
+    async function requestService() {
+        const response = await fetch('/system-info');
+        document.getElementById('response-area').value = await response.text();
+    }
+
+    async function stopService() {
+        await fetch('/shutdown-java-1', {method: 'POST'});
+        await fetch('/shutdown-java-2', { method: 'POST' });
+        await fetch('/shutdown-java-3', { method: 'POST' });
+        await fetch('/nginx-shutdown', { method: 'POST' });
+        document.getElementById('app').innerText = "System shutting down...";
+    }
+
+    if (!isAuthenticated) {
+        showLoginPage();
+    } else {
+        showMainPage();
+    }
+</script>
+</body>
+</html>

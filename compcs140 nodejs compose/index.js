@@ -38,6 +38,10 @@ app.get('/system-info', async (req, res) => {
     }
 });
 
+app.post('/shutdown', (req, res) => {
+    res.send('Shutting down server');
+    process.exit(0);
+});
+
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
 });

@@ -49,6 +49,22 @@ public class SystemInfoController {
         }
     }
 
+    public String shutdownNodeServer() throws URISyntaxException, IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("http://node-app:8080/shutdown"))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            return "Node.js server shutdown successfully.";
+        } else {
+            return "Failed to shutdown Node.js server. Status code: " + response.statusCode();
+        }
+    }
+
     private String executeCommand(String command) throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder();
 

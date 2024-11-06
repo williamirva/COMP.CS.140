@@ -1,5 +1,19 @@
-version: '3'
+version: '4'
 services:
+  nginx:
+    build:
+      context: ./compcs140-nginx-compose
+    ports:
+      - "8198:8198"
+    depends_on:
+      - node-app
+      - spring-boot-app-1
+      - spring-boot-app-2
+      - spring-boot-app-3
+    networks:
+      - app-network
+
+
   node-app:
     build:
       context: ./compcs140 nodejs compose
@@ -9,12 +23,28 @@ services:
     networks:
       - app-network
 
-  spring-boot-app:
+  spring-boot-app-1:
     build:
       context: ./compcs140-java-compose
-    container_name: java-app
-    ports:
-      - "8199:8199"
+    container_name: java-app-1
+    depends_on:
+      - node-app
+    networks:
+      - app-network
+
+  spring-boot-app-2:
+    build:
+      context: ./compcs140-java-compose
+    container_name: java-app-2
+    depends_on:
+      - node-app
+    networks:
+      - app-network
+
+  spring-boot-app-3:
+    build:
+      context: ./compcs140-java-compose
+    container_name: java-app-3
     depends_on:
       - node-app
     networks:
