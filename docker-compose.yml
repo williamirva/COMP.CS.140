@@ -18,8 +18,6 @@ services:
     build:
       context: ./compcs140 nodejs compose
     container_name: node-app
-    ports:
-      - "8080:8080"
     networks:
       - app-network
 
@@ -50,6 +48,14 @@ services:
     networks:
       - app-network
 
+  python-shutdown:
+    build:
+      context: ./compcs140-shutdown-service
+    container_name: python-app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - app-network
 networks:
   app-network:
     driver: bridge

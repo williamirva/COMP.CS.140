@@ -1,14 +1,20 @@
 docker container ls output:
-CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS                    NAMES
-7e15a0c4a0fe   compcs140-spring-boot-app   "java -jar app.jar"      11 minutes ago   Up 11 minutes   0.0.0.0:8199->8199/tcp   java-app
-2e6b9c521ca5   compcs140-node-app          "docker-entrypoint.s…"   11 minutes ago   Up 11 minutes   0.0.0.0:8080->8080/tcp   node-app
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS         PORTS                            NAMES
+0460af2e4ef2   compcs140-python-shutdown     "python pythonShutdo…"   11 minutes ago   Up 3 minutes   5000/tcp                         python-app
+dabae543e969   compcs140-nginx               "/docker-entrypoint.…"   37 minutes ago   Up 3 minutes   80/tcp, 0.0.0.0:8198->8198/tcp   compcs140-nginx-1
+2fc0515052a6   compcs140-spring-boot-app-3   "java -jar app.jar"      48 minutes ago   Up 3 minutes   8199/tcp                         java-app-3
+69a8055a0071   compcs140-spring-boot-app-2   "java -jar app.jar"      48 minutes ago   Up 3 minutes   8199/tcp                         java-app-2
+1257a84af027   compcs140-spring-boot-app-1   "java -jar app.jar"      48 minutes ago   Up 3 minutes   8199/tcp                         java-app-1
+7efb83401d37   compcs140-node-app            "docker-entrypoint.s…"   48 minutes ago   Up 3 minutes   8080/tcp                         node-app
+
 
 docker network ls output:
 NETWORK ID     NAME                    DRIVER    SCOPE
-bde696c158d7   apuope-re_default       bridge    local
-f5740ec62d6a   backend_default         bridge    local
-10b70ecbb66b   bridge                  bridge    local
-a24e898702ed   compcs140_app-network   bridge    local
+9bb94ec500bf   apuope-re_default       bridge    local
+138b89ed0106   backend_default         bridge    local
+1a227c6043ff   bridge                  bridge    local
+972ad9178bb2   compcs140_app-network   bridge    local
 28d7a82b5f3a   host                    host      local
 5056d821e921   medium-meno_backend     bridge    local
 c53636217007   none                    null      local
+

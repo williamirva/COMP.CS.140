@@ -8,3 +8,8 @@ I didn't want to start implementing SpringBoot even though LLm suggested to, as 
 Regarding docker compose. The Node Dockerfile was pretty much the same I would make from scratch myself. To Java version I used
 slim version of jdk although due to that I had to add update and install for bash commands as lite version didn't seem to support them.
 Maybe LLMs version would have been simpler after all but at least I get hands-on experience on using the slim JDK and maybe the start-up time is now a bit faster.
+
+Excercise 4:
+In 4th excercise I used chatGPT to generate base for the nginx conf -file and to learn how to set up nginx. LLM also helped with the shutdown service.
+Originally I wanted to do it with Java, but because with Python it was much simpler decided to do it with separate Python service.
+Idea to use Python came from my friend who also does this course.

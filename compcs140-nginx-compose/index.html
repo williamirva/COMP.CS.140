@@ -53,10 +53,7 @@
     }
 
     async function stopService() {
-        await fetch('/shutdown-java-1', {method: 'POST'});
-        await fetch('/shutdown-java-2', { method: 'POST' });
-        await fetch('/shutdown-java-3', { method: 'POST' });
-        await fetch('/nginx-shutdown', { method: 'POST' });
+        await fetch('/shutdown', { method: 'POST' });
         document.getElementById('app').innerText = "System shutting down...";
     }
 

@@ -30,8 +30,6 @@ public class Application {
 
         server.createContext("/authenticate", new AuthenticationHandler());
         server.createContext("/system-info", new SystemInfoHandler());
-        server.createContext("/shutdown", new ShutdownHandler());
-
         server.start();
     }
 
@@ -94,33 +92,6 @@ public class Application {
                     e.printStackTrace();
                     exchange.sendResponseHeaders(500, -1);
                 }
-            } else {
-                exchange.sendResponseHeaders(405, -1);
-            }
-        }
-    }
-
-    static class ShutdownHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            if ("POST".equals(exchange.getRequestMethod())) {
-                String response = "Shutting down the server...";
-                exchange.sendResponseHeaders(200, response.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-
-                SystemInfoController controller = new SystemInfoController();
-                try {
-                    controller.shutdownNodeServer();
-                    System.out.println("Node.js server shut down successfully.");
-                } catch (URISyntaxException | InterruptedException e) {
-                    System.err.println("Node.js server is already shut down or unreachable.");
-                } catch (IOException e) {
-                    System.err.println("Failed to shut down Node.js server: " + e.getMessage());
-                }
-
-                System.exit(0);
             } else {
                 exchange.sendResponseHeaders(405, -1);
             }
