@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+build:
+  stage: build
+  script:
+    - docker-compose build
+
+test:
+  stage: test
+  services:
+    - docker:dind
+  script:
+    - echo "Tests not implemented"
+
+deploy:
+  stage: deploy
+  services:
+    - docker:dind
+  script:
+    - docker-compose up -d
+    - echo "Deployment completed successfully"
